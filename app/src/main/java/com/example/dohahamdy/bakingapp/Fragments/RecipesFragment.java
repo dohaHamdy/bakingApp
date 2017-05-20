@@ -18,12 +18,17 @@ import com.example.dohahamdy.bakingapp.R;
 import java.net.URL;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecipesFragment extends Fragment implements RecipeAdapter.RecipeAdapterOnClickHandler
 {
 
     public static String TAG="Recipe";
-    private ProgressBar mLoading;
-    private RecyclerView mcyclerView;
+    @BindView(R.id.loading) ProgressBar mLoading;
+    @BindView(R.id.cyclerView) RecyclerView mcyclerView;
+  //  private  ProgressBar mLoading;
+  //  private  RecyclerView mcyclerView;
     private RecyclerView.LayoutManager mLayoutManger;
     private RecipeAdapter adapt;
     @Override
@@ -38,10 +43,10 @@ public class RecipesFragment extends Fragment implements RecipeAdapter.RecipeAda
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_recipes, container, false);
+        ButterKnife.bind(this,view);
 
-
-        mLoading=(ProgressBar)view.findViewById(R.id.loading);
-        mcyclerView=(RecyclerView) view.findViewById(R.id.cyclerView);
+      //  mLoading=(ProgressBar)view.findViewById(R.id.loading);
+      //  mcyclerView=(RecyclerView) view.findViewById(R.id.cyclerView);
 
 
         adapt=new RecipeAdapter( getContext());

@@ -45,15 +45,13 @@ public class StepDetailAdapter extends RecyclerView.Adapter<StepDetailAdapter.St
 
     public class StepDetailAdapterViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/{
 
-        public Button mNext;
-        public VideoView mVideo;
-        public TextView mShortDesc;
+       // public Button mNext;
+       // public TextView mShortDesc;
         StepDetailAdapterViewHolder(View view){
             super(view);
-            mShortDesc=(TextView)view.findViewById(R.id.shortDescription);
-            mNext=(Button)view.findViewById(R.id.nextStep);
-            mVideo=(VideoView)view.findViewById(R.id.videoView);
-            mNext.setOnClickListener(new View.OnClickListener() {
+         //   mShortDesc=(TextView)view.findViewById(R.id.shortDescription);
+           // mNext=(Button)view.findViewById(R.id.nextStep);
+          /*  mNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -63,7 +61,7 @@ public class StepDetailAdapter extends RecyclerView.Adapter<StepDetailAdapter.St
                     intent.putExtra("recipeID",recipeID);
                     context.startActivity(intent);
                 }
-            });
+            });*/
             //view.setOnClickListener(this);
         }
 

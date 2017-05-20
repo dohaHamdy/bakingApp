@@ -1,15 +1,28 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.dohahamdy.bakingapp.Fragments.StepDetailFragment">
-
+<!--
     <VideoView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/videoView"
         />
+        -->
+<com.google.android.exoplayer2.ui.SimpleExoPlayerView
+    android:id="@+id/player"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:resize_mode="fill"
+    />
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:id="@+id/player_view"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,4 +34,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/nextStep"
         android:text="@string/btnText"/>
+        -->
 </FrameLayout>

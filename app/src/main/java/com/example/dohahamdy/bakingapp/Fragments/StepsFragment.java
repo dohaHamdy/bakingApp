@@ -20,13 +20,16 @@ import com.example.dohahamdy.bakingapp.R;
 import java.net.URL;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOnClickHandler
 {
 
     public static String TAG="STEP";
     //private TextView mYextError;
-    private ProgressBar mLoading;
-    private RecyclerView mcyclerView;
+    @BindView(R.id.loadingStep) ProgressBar mLoading;
+    @BindView(R.id.recycleStep) RecyclerView mcyclerView;
     private RecyclerView.LayoutManager mLayoutManger;
     private StepAdapter adapt;
     private RecipeData recipeData;
@@ -42,9 +45,7 @@ public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOn
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_steps, container, false);
-        mLoading=(ProgressBar)view.findViewById(R.id.loadingStep);
-        mcyclerView=(RecyclerView) view.findViewById(R.id.recycleStep);
-
+        ButterKnife.bind(this,view);
         adapt=new StepAdapter( getContext());
         mcyclerView.setAdapter(adapt);
 
