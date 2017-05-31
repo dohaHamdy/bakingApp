@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -50,12 +51,14 @@ import java.util.List;
 import java.util.logging.Handler;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class StepDetailFragment extends Fragment implements  ExoPlayer.EventListener{
     public static String TAG="STEPVIDEO";
     public String videoString;
     @BindView(R.id.shortDesc) TextView mDesc;
     @BindView(R.id.nextStep) Button mNext;
+    @BindView(R.id.default_image)ImageView mImage;
     private SimpleExoPlayer player;
     //private ExoPlayer player;
     private static final int BUFFER_SEGMENT_SIZE = 64 * 1024;
@@ -76,6 +79,15 @@ public class StepDetailFragment extends Fragment implements  ExoPlayer.EventList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_step_detail, container, false);
+        ButterKnife.bind(this,view);
+
+        mNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stepIndex ++;
+                new FetchVideo().execute(recipeIndex,stepIndex,1);
+            }
+        });
         // 1. Create a default TrackSelector
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory =
@@ -140,9 +152,14 @@ public class StepDetailFragment extends Fragment implements  ExoPlayer.EventList
         protected void onPostExecute(List<String> datas) {
             if(datas !=null){
                 if(datas.get(0)!=null&&datas.get(1)!=null) {
+
                     videoString = datas.get(0);
                     mDesc.setText(datas.get(1));
-                    if(videoString.equals("")) {
+                    if(!videoString.equals("")) {
+                        Log.d(TAG, "onPostExecute: Video");
+                        mImage.setVisibility(View.INVISIBLE);
+                        playerView.setVisibility(View.VISIBLE);
+
                         MediaSource videoSource = new ExtractorMediaSource(Uri.parse(videoString),
                                 dataSourceFactory, extractorsFactory, null, null);
                         // Prepare the player with the source.
@@ -151,6 +168,16 @@ public class StepDetailFragment extends Fragment implements  ExoPlayer.EventList
                         playerView.requestFocus();
                         player.setPlayWhenReady(true);
                     }
+                    else
+                    {
+                        mImage.setVisibility(View.VISIBLE);
+
+                        Log.d(TAG, "onPostExecute: no Video");
+                        playerView.setVisibility(View.INVISIBLE);
+
+                    }
+                }
+                else{
                 }
 
             }

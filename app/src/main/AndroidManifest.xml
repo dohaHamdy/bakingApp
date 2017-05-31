@@ -20,7 +20,17 @@
         </activity>
         <activity android:name=".Activities.StepsActivity" />
         <activity android:name=".Activities.VideoMain2Activity" />
-        <activity android:name=".Activities.StepDetailActivity"></activity>
+        <activity android:name=".Activities.StepDetailActivity" />
+
+        <receiver android:name=".widget.DataWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/data_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
