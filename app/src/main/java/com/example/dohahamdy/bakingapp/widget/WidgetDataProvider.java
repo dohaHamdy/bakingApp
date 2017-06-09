@@ -27,7 +27,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
         mContext = context;
         Bundle extras = intent.getExtras();
         mIngredient= (List<IngredientData>) extras.get("in");
-        //Toast.makeText(context,"aya **",Toast.LENGTH_LONG).show();
 
 
     }
@@ -54,7 +53,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
 
     @Override
     public RemoteViews getViewAt(int position) {
-        //Toast.makeText(this.mContext,"aya",Toast.LENGTH_LONG).show();
         RemoteViews view = new RemoteViews(mContext.getPackageName(),
                 android.R.layout.simple_list_item_1);
         view.setTextViewText(android.R.id.text1, mCollection.get(position));
@@ -83,7 +81,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
 
     private void initData() {
 
-        //  Toast.makeText(this.mContext,"aya",Toast.LENGTH_LONG).show();
         mCollection.clear();
         try {
 
